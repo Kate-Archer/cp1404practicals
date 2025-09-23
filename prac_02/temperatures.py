@@ -5,10 +5,10 @@ Program for temperature conversion, with functions
 MENU ="""C - Convert Celsius to Fahrenheit\nF - Convert Fahrenheit to Celsius\nQ - Quit"""
 
 def main():
-    """ Show MENU """
+    """Show MENU."""
     print(MENU)
     choice = input(">>> ").upper()
-    """ Convert between celsius and fahrenheit """
+    """Convert between celsius and fahrenheit."""
     while choice != "Q":
         if choice == "C":
             celsius = float(input("Celsius: "))
@@ -26,13 +26,13 @@ def main():
 
 
 def convert_fahrenheit_to_celsius(fahrenheit: float) -> float:
-    """ Convert fahrenheit to celsius """
+    """Convert fahrenheit to celsius."""
     celsius = 5 / 9 * (fahrenheit - 32)
     return celsius
 
 
 def convert_celsius_to_fahrenheit(celsius: float) -> float:
-    """ Convert celsius to fahrenheit """
+    """Convert celsius to fahrenheit."""
     fahrenheit = celsius * 9.0 / 5 + 32
     return fahrenheit
 
