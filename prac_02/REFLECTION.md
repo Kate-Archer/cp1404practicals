@@ -10,7 +10,7 @@ Afternoons after class or work, and over the weekend in my room. As for the time
 
 ## What are you doing well in the subject so far that you will keep doing?
 
-I'm trying to follow the format correctly and keep the indenting correct with ctrl + alt + L. 
+I'm trying to follow the formatting style correctly and keep the indenting correct with ctrl + alt + L. 
 
 ## What do you need to stop or change in your work for this subject overall so far?
 
