@@ -1,5 +1,5 @@
 def main():
-    """ give a valid password """
+    """ Give a valid password """
     password = get_password()
     print_password(password)
 
