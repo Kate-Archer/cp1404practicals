@@ -18,7 +18,7 @@ def get_password(MINIMUM_LENGTH):
     """Get password, ensuring it meets the minimum_length requirement."""
     password = input(f"Enter password (minimum length {MINIMUM_LENGTH} characters): ")
     while len(password) < MINIMUM_LENGTH:
-        print(f"Password too short. (Minimum length of {MINIMUM_LENGTH}")
+        print(f"Password too short. (Minimum length of {MINIMUM_LENGTH})")
         password = input(f"Enter password (minimum length {MINIMUM_LENGTH} characters): ")
     return password
 
