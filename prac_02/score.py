@@ -11,7 +11,7 @@ import random
 
 def main():
     """Get a numeric score and display its status."""
-    # score = float(input("Enter score: "))
+    #score = float(input("Enter score: "))
     score = random.randint(0, 100)
     print(determine_status(score))
 
@@ -19,13 +19,13 @@ def main():
 def determine_status(score: float):
     """Determine the status of a given score."""
     if score < 0 or score > 100:
-        print("Invalid score")
+        return "Invalid score"
     elif score >= 90:
-        print("Excellent")
+        return "Excellent"
     elif score >= 50:
-        print("Passable")
+        return "Passable"
     else:
-        print("Bad")
+        return "Bad"
 
 
 main()
