@@ -9,7 +9,7 @@ def main():
     number_of_scores = get_number_of_scores()
     random_scores = random.sample(range(0, 101), number_of_scores)
     print(random_scores)
-    # The following for loop was found online and may not be the best method!
+    # The following for loop and file creator was found online and may not be the best method!
     with open("results.txt", "w") as out_file:
         for score in random_scores:
             status = determine_status(score)
