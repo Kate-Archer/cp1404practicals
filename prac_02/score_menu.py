@@ -45,7 +45,7 @@ def determine_result(score: float):
     """Determine the result of a given score within the grading boundaries."""
     # if score < 0 or score > 100:
     #     return "Invalid score"
-    # First if statement now unnecessary due to get_valid_score() function check system
+    # Remove first if statement. Now unnecessary due to get_valid_score() function check system.
     if score >= 90:
         return "Excellent"
     elif score >= 50:
@@ -58,7 +58,7 @@ def print_asterisks(score):
     """Print an amount of asterisks equivalent to the score amount (rounded)."""
     for i in range(int(score)):
         print('*', end=' ')
-        # Allow a new line after every 20th asterisk
+        # Allow a new line after every 20th asterisk.
         if i % 20 == 0:
             print()
     print()
