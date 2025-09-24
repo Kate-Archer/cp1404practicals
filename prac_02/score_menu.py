@@ -17,7 +17,6 @@ def main():
 
     print(MENU)
     choice = input(">>> ").upper()
-    """="""
     while choice != "Q":
         if choice == "G":
             score = get_valid_score()
@@ -33,7 +32,7 @@ def main():
 
 
 def get_valid_score() -> float:
-    """Return valid score for the menu."""
+    """Return valid score (0-100) for the menu."""
     score = float(input("What is your score? (0-100): "))
     while score < 0 or score > 100:
         print("Invalid score (0-100 only).")
