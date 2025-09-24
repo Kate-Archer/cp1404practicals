@@ -1,5 +1,3 @@
-41 is Bad
-58 is Passable
-3 is Bad
-95 is Excellent
-97 is Excellent
+60 is Passable
+87 is Passable
+37 is Bad
