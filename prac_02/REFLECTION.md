@@ -15,7 +15,7 @@ I'm trying to follow the formatting style correctly and keep the indenting corre
 ## What do you need to stop or change in your work for this subject overall so far?
 
 I need to stop overthinking or overcomplicating the task to the point where I don't answer what was actually asked for (a tangent).
-I need to unlearn old, bad coding habbits. I need to unlearn old naming conventions and comment styles from other classes. 
+I need to unlearn old, bad coding habits. I need to unlearn old naming conventions and comment styles from other classes. 
 
 ## What are you currently doing poorly for practicals in this subject that you will change?
 
