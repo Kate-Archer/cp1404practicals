@@ -22,7 +22,7 @@ def main():
         if choice == "G":
             score = get_valid_score()
         elif choice == "P":
-            print(determine_result(score))
+            print(f"The result of the score '{score}' is {determine_result(score)}!")
         elif choice == "S":
             print_asterisks(score)
         else:
