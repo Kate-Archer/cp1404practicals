@@ -20,7 +20,7 @@ def main():
     """="""
     while choice != "Q":
         if choice == "G":
-            print(score)
+            score = get_valid_score()
         elif choice == "P":
             print(determine_status(score))
         elif choice == "S":
