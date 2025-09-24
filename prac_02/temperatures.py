@@ -2,7 +2,8 @@
 CP1404/CP5632 - Practical 1
 Program for temperature conversion, with functions
 """
-MENU ="""C - Convert Celsius to Fahrenheit\nF - Convert Fahrenheit to Celsius\nQ - Quit"""
+MENU = """C - Convert Celsius to Fahrenheit\nF - Convert Fahrenheit to Celsius\nQ - Quit"""
+
 
 def main():
     """Show MENU."""

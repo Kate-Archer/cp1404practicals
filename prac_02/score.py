@@ -11,7 +11,7 @@ import random
 
 def main():
     """Get a numeric score and display its status."""
-    #score = float(input("Enter score: "))
+    # score = float(input("Enter score: "))
     score = random.randint(0, 100)
     print(determine_status(score))
 

@@ -12,7 +12,6 @@ def main():
     print_asterisks(password)
 
 
-
 # Attempt 2:
 def get_password(MINIMUM_LENGTH):
     """Get password, ensuring it meets the minimum_length requirement."""

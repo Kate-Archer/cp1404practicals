@@ -23,10 +23,10 @@ from random import randint
 
 low = int(input("Low: "))
 high = int(input("High: "))
-while low >= high: # while input is bad only. good because while can run as many times as wanted.
+while low >= high:  # while input is bad only. good because while can run as many times as wanted.
     print("error")
-    high = int(input("High: ")) # only high repeated, good
-    print(":)"* randint(low, high))
+    high = int(input("High: "))  # only high repeated, good
+    print(":)" * randint(low, high))
 # or can do number_of_smiles for randint(low, high)
 
 # i will now "input_number" for example of a function
@@ -37,5 +37,3 @@ while low >= high: # while input is bad only. good because while can run as many
 # input().upper() right (child, member, string) of left (input, module). upper is a member of string
 
 # brothers wives is a syntax error, grammar, multiple meanings, ' missing
-
-
