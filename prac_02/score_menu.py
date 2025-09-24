@@ -22,11 +22,11 @@ def main():
         if choice == "G":
             score = get_valid_score()
         elif choice == "P":
-            print(determine_status(score))
+            print(determine_result(score))
         elif choice == "S":
             print_asterisks(score)
         else:
-            print("Invalid option")
+            print("Invalid menu option.")
         print(MENU)
         choice = input(">>> ").upper()
     print("Thank you. Goodbye!")
@@ -34,18 +34,19 @@ def main():
 
 def get_valid_score() -> float:
     """Return valid score for the menu."""
-    score = float(input("What is your score?: "))
+    score = float(input("What is your score? (0-100): "))
     while score < 0 or score > 100:
-        print("Invalid score")
-        score = float(input("What is your score?: "))
+        print("Invalid score (0-100 only).")
+        score = float(input("What is your score? (0-100): "))
     return score
 
 
-def determine_status(score: float):
-    """Determine the status of a given score."""
-    if score < 0 or score > 100:
-        return "Invalid score"
-    elif score >= 90:
+def determine_result(score: float):
+    """Determine the result of a given score within the grading boundaries."""
+    # if score < 0 or score > 100:
+    #     return "Invalid score"
+    # First if statement now unnecessary due to get_valid_score() function check system
+    if score >= 90:
         return "Excellent"
     elif score >= 50:
         return "Passable"
@@ -57,7 +58,7 @@ def print_asterisks(score):
     """Print an amount of asterisks equivalent to the score amount (rounded)."""
     for i in range(int(score)):
         print('*', end=' ')
-        # Allow a new line after every 20th asteriskA
+        # Allow a new line after every 20th asterisk
         if i % 20 == 0:
             print()
     print()
