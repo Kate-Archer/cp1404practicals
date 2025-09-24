@@ -1,0 +1,6 @@
+92 is Excellent
+78 is Passable
+59 is Passable
+38 is Bad
+13 is Bad
+43 is Bad
