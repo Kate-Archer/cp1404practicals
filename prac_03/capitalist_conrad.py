@@ -15,26 +15,30 @@ MIN_PRICE = 1
 MAX_PRICE = 100.0
 INITIAL_PRICE = 10.0
 number_of_days = 0
+FILENAME = "conrad_stock_simulator.txt"
+
+# open output file for writing
+out_file = open(FILENAME, 'w')
 
 price = INITIAL_PRICE
-print(f"${price:,.2f}")
+print(f"Starting price $:{price:,.2f}", file=out_file)
 
 while MIN_PRICE <= price <= MAX_PRICE:
     price_change = 0
     number_of_days += 1
-
     # generate a random integer of 1 or 2
     # if it's 1, the price increases, otherwise it decreases
     if random.randint(1, 2) == 1:
         # generate a random floating-point number
         # between 0 and MAX_INCREASE
-
         price_change = random.uniform(0, MAX_INCREASE)
-
     else:
         # generate a random floating-point number
         # between negative MAX_DECREASE and 0
         price_change = random.uniform(-MAX_DECREASE, 0)
 
     price *= (1 + price_change)
-    print(f"On day {number_of_days} price is: ${price:,.2f}")
+    print(f"On day {number_of_days} price is: ${price:,.2f}", file=out_file)
+
+# finally close the file
+out_file.close()
