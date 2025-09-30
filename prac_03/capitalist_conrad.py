@@ -9,12 +9,10 @@ The price should be displayed to the nearest cent (e.g. $33.59, not $33.59182329
 """
 import random
 
-from prac_01.prac_01.electricity_bill import number_of_billing_days
-
-MAX_INCREASE = 0.1  # 10%
+MAX_INCREASE = 0.175  # 17.5%
 MAX_DECREASE = 0.05  # 5%
-MIN_PRICE = 0.01
-MAX_PRICE = 1000.0
+MIN_PRICE = 1
+MAX_PRICE = 100.0
 INITIAL_PRICE = 10.0
 number_of_days = 0
 
