@@ -14,13 +14,14 @@ MAX_DECREASE = 0.05  # 5%
 MIN_PRICE = 1
 MAX_PRICE = 100.0
 INITIAL_PRICE = 10.0
-number_of_days = 0
+
 FILENAME = "conrad_stock_simulator.txt"
 
 # open output file for writing
 out_file = open(FILENAME, 'w')
 
 price = INITIAL_PRICE
+number_of_days = 0
 print(f"Starting price $:{price:,.2f}", file=out_file)
 
 while MIN_PRICE <= price <= MAX_PRICE:

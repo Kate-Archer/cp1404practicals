@@ -1,3 +1,4 @@
-60 is Passable
-87 is Passable
-37 is Bad
+91 is Excellent
+56 is Passable
+93 is Excellent
+41 is Bad
