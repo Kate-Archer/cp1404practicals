@@ -1,8 +1,17 @@
+"""
+CP1404/CP5632 Practical - Suggested Solution
+Make the appropriate choice of file-reading technique for each of these questions:
+- read()
+- readline()
+- readlines()
+- for line in file
+"""
+
 # 1. Write code that asks the user for their name,
 # then opens a file called name.txt and writes that name to it.
 # Use open and close.
-name = input("What is your name?: ")
 out_file = open("name.txt", "w")
+name = input("What is your name?: ")
 print(name, file=out_file)
 out_file.close()
 
@@ -10,10 +19,10 @@ out_file.close()
 # write code that opens "name.txt" and reads the name (as above)
 # then prints (note the exact output), Hi Bob! (or whatever the name is in the file).
 # Do not simply print the user's input variable!
-in_file = open("name.txt")
-# Read and print "Hi {name}!" from file without a new line at the end
-print(f"Hi {in_file.readline().strip()}!")
+in_file = open("name.txt", "r")
+name = in_file.readline().strip()  # Read and print "Hi {name}!" from file without a new line at the end
 in_file.close()
+print(f"Hi {name}!")
 
 # 3. Create a text file called numbers.txt and save it to the prac directory.
 # Put the numbers 17, 42, 100 on separate lines in the file and save it.
@@ -31,6 +40,7 @@ with open("numbers.txt", "r") as infile:
 total = 0  # Set the total as 0 initially
 with open("numbers.txt", "r") as infile:
     for line in infile:
-        total += int(line)  # Add the integer from each line to get a total
+        number = int(line)
+        total += number  # Add the integer from each line to get a total
 
 print(total)
