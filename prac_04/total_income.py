@@ -19,6 +19,8 @@ def main():
 
 
 def print_report(incomes, number_of_months):
+    """ Print the report with incomes and number of months present. """
+    # Print the income report, starting with a total of 0 and accumulating per month and income input
     print("\nIncome Report\n-------------")
     total = 0
     for month in range(1, number_of_months + 1):
