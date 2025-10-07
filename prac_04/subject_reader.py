@@ -8,6 +8,7 @@ FILENAME = "subject_data.txt"
 
 def main():
     data = load_data(FILENAME)
+    display_subject_details(parts)
     print(data)
 
 
@@ -23,7 +24,15 @@ def load_data(filename=FILENAME):
         parts[2] = int(parts[2])  # Make the number an integer (ignore PyCharm's warning)
         print(parts)  # See if that worked
         print("----------")
+
     input_file.close()
+    return parts
+
+
+def display_subject_details(parts):
+    for part in parts:
+        print(f"{part[0]} is taught by {part[1]} and has {part[2]}")
 
 
 main()
+# TODO: AAAAAAAAAAA
