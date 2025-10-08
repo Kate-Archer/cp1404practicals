@@ -7,7 +7,7 @@ List exercises
 numbers = []
 for i in range(5):
     number = int(input("Give a number please (5 total): "))
-    numbers.append(number)
+    numbers.append(number)  # adds the new number to the list
 print(f"The first number is {numbers[0]}!")
 print(f"The last number is {numbers[-1]}!")
 print(f"The smallest number is {min(numbers)}!")
@@ -23,3 +23,9 @@ while username not in usernames:
     print("Access denied")
     username = input("What is your username?: ")
 print("Access granted")
+
+# or if a loop is not required:
+if username in usernames:
+    print("Access granted")
+else:
+    print("Access denied")

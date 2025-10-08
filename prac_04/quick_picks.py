@@ -11,7 +11,7 @@ MAXIMUM = 45
 
 
 def main():
-    """Quick picks program - choose sets of random numbers."""
+    """Quick picks program - choose sets of random numbers based on user input."""
     number_of_quick_picks = int(input("How many quick picks do you wish to generate?: "))
     while number_of_quick_picks < 0:
         print("There must be at least 1 quick pick!")
