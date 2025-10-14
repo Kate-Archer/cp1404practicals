@@ -1,5 +1,7 @@
 """
-1:10 - 1:34
+Prac 05
+Email code
+1:10 - 1:38
 """
 
 
@@ -21,7 +23,7 @@ def main():
 
 def extract_name_from_email(email):
     """Extract the expected name from provided email address """
-    prefix = email.split("@")
+    prefix = email.split("@")[0]  # splits at first @ in email
     parts = prefix.split('.')
     name = " ".join(parts).title()  # returns name with uppercase first letter
     return name
