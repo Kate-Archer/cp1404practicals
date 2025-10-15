@@ -1,13 +1,14 @@
 """
 Prac 05
 Email code
-1:10 - 1:38
+Estimate: 20 mins
+Time: 28 mins
 """
 
 
 def main():
     """Create dictionary of emails to names."""
-    email_to_name = {}
+    email_to_name = {} # set dictionary as lowercase because it will update
     email = input("What is your email?: ")
     while email != "":
         name = extract_name_from_email(email)
@@ -23,9 +24,9 @@ def main():
 
 def extract_name_from_email(email):
     """Extract the expected name from provided email address """
-    prefix = email.split("@")[0]  # splits at @ in email and returns first part
+    prefix = email.split("@")[0]  # split at @ in email and return first prefix [0]
     parts = prefix.split('.')
-    name = " ".join(parts).title()  # returns name with uppercase first letter
+    name = " ".join(parts).title()  # return name with uppercase first letter (title)
     return name
 
 
