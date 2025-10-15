@@ -28,9 +28,3 @@ while colour_name != "":
         print("Invalid colour name")
 
     colour_name = input("Please enter a colour name: ").lower()
-
-
-
-
-
-
