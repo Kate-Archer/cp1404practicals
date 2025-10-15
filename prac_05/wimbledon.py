@@ -13,13 +13,18 @@ def main():
         for line in in_file:
             parts = line.split(",")
             champion = parts[2]
-            print(champion)
             champion = set()
-    #
-    # country.join()
-    #
-    # print(f"{champion} : {score}")
-    #
+            print(champion)
+    max_length_score = max(len(score) for  score in CHAMPION_TO_SCORE(score)
+    max_length_champion = max(len(champion) for champion in CHAMPION_TO_SCORE(champion))
+    print(f"{champion:<{max_length_champion}} : {score:<{max_length_score}}")
+
+    countries = parts[1]
+    print(f"These {number_of_countries} have won Wimbledon:n\ {countries.join()}")
+
+
+
+
 
 
 
