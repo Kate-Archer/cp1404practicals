@@ -13,12 +13,12 @@ COLOUR_TO_CODE = {"amethyst": "#9966cc", "aqua": "#00ffff",
                   "baby pink": "#f4c2c2", "bleu de france": "318ce7"}
 
 # Print the colour and relating code nicely
-max_length_colour = max(len(colour) for colour in COLOUR_TO_CODE)
-max_length_code = max(len(code) for code in COLOUR_TO_CODE)
+max_length_colour = max(len(colour) for colour in COLOUR_TO_CODE.keys())
+max_length_code = max(len(code) for code in COLOUR_TO_CODE.values())
 for colour, code in COLOUR_TO_CODE.items():
     print(f"{colour:<{max_length_colour}} is {code:>{max_length_code}}")
 
-# Print the correlating code based on a valid colour input in
+# Print the correlating code based on a valid colour input
 colour_name = input("Please enter a colour name: ").lower()
 while colour_name != "":
     # print(f"The code for \"{colour_name}\" is {COLOUR_TO_CODE.get(colour_name)}")
