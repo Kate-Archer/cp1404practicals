@@ -14,21 +14,16 @@ def main():
     name = str(input("Name:")).title()
 
     while name != "":
-        try:
-            year = int(input("Year:"))
+        year = handle_year_exception()
+        cost = handle_cost_exception()
 
-        except ValueError:
-            print("Year must be an integer (e.g. 2020).")
-            continue
-        try:
-            cost = float(input("Cost: $"))
-            new_guitar = Guitar(name, year, cost)
-            guitars.append(new_guitar)
-            print(f"{name} ({year}) : ${cost: .2f} added.")
-            name = str(input("Name:"))
-        except ValueError:
-            print("Cost must be a number.")
-            continue
+        new_guitar = Guitar(name, year, cost)
+        guitars.append(new_guitar)
+        print(f"{name} ({year}) : ${cost: .2f} added.")
+        name = str(input("Name:"))
+
+    # guitars.append(Guitar("Gibson L-5 CES", 1922, 16035.40))
+    # guitars.append(Guitar("Line 6 JTV-59", 2010, 1512.9))
 
     print("...snip...")
     print("These are my guitars:")
@@ -38,11 +33,27 @@ def main():
         vintage_string = ""
         if new_guitar.is_vintage():
             vintage_string = "(vintage)"
-        print(f"Guitar {index}: {new_guitar.name:>{max_name}} ({new_guitar.year:>4}), worth ${new_guitar.cost:>{max_year}}{vintage_string}")
+        print(f"Guitar {index}: {new_guitar.name:>{max_name}} ({new_guitar.year:>{max_year}}), worth ${new_guitar.cost: >{max_cost}} {vintage_string}")
 
-#
-# guitars.append(Guitar("Gibson L-5 CES", 1922, 16035.40))
-# guitars.append(Guitar("Line 6 JTV-59", 2010, 1512.9))
+
+def handle_cost_exception():
+    while True:
+        try:
+            cost = float(input("Cost: $"))
+            return cost
+        except ValueError:
+            print("Cost must be a number.")
+
+
+def handle_year_exception():
+    while True:
+        try:
+            year = int(input("Year:"))
+            return year
+        except ValueError:
+            print("Year must be an integer (e.g. 2020).")
+
+
 
 def compute_max_lengths(guitars):
     """Compute the maximum column lengths for the guitar details (name, year, cost)."""
