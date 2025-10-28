@@ -1,7 +1,7 @@
 """
 Prac 06
 Guitar Class
-start 1:10 -1:30
+start 1:10 -1:45
 """
 
 class Guitar:
