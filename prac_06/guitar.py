@@ -6,7 +6,7 @@ start 1:10 -1:45
 
 class Guitar:
     def __init__(self, name = "", year = 0, cost = 0):
-        """Guitar class."""
+        """Create Guitar class with instances."""
         self.name = str(name)
         self.year = int(year)
         self.cost = float(cost)

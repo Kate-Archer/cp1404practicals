@@ -1,13 +1,13 @@
 """
 Add a list of guitars
 prac 06
-1:56 -
+Time: 1:56 - 2:40 (took breaks)
 """
 from prac_06.guitar import Guitar
 
 
 def main():
-    """eee"""
+    """Guitar list (Guitar class)."""
     guitars = []
 
     print("My guitars!")
@@ -25,18 +25,21 @@ def main():
     # guitars.append(Guitar("Gibson L-5 CES", 1922, 16035.40))
     # guitars.append(Guitar("Line 6 JTV-59", 2010, 1512.9))
 
-    print("...snip...")
-    print("These are my guitars:")
+    if guitars: # Handle the ValueError when no guitars are given.
+        print("...snip...")
+        print("These are my guitars:")
 
-    max_name, max_year, max_cost = compute_max_lengths(guitars)
-    for index, new_guitar in enumerate(guitars, start=1):
-        vintage_string = ""
-        if new_guitar.is_vintage():
-            vintage_string = "(vintage)"
-        print(f"Guitar {index}: {new_guitar.name:>{max_name}} ({new_guitar.year:>{max_year}}), worth ${new_guitar.cost: >{max_cost}} {vintage_string}")
-
+        max_name, max_year, max_cost = compute_max_lengths(guitars)
+        for index, new_guitar in enumerate(guitars, start=1):
+            vintage_string = ""
+            if new_guitar.is_vintage():
+                vintage_string = "(vintage)"
+            print(f"Guitar {index}: {new_guitar.name:>{max_name}} ({new_guitar.year:>{max_year}}), worth ${new_guitar.cost: >{max_cost}} {vintage_string}")
+    else:
+        print("Theres no guitars :<, buy one!")
 
 def handle_cost_exception():
+    """Handle cost exceptions (non float or non integer input)."""
     while True:
         try:
             cost = float(input("Cost: $"))
@@ -46,6 +49,7 @@ def handle_cost_exception():
 
 
 def handle_year_exception():
+    """Handle year exceptions (non integer input)."""
     while True:
         try:
             year = int(input("Year:"))
