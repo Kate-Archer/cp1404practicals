@@ -25,9 +25,6 @@ def main():
     # Add the new guitar to the file
     update_guitars(guitars)
 
-    # guitars.append(Guitar("Gibson L-5 CES", 1922, 16035.40))
-    # guitars.append(Guitar("Line 6 JTV-59", 2010, 1512.9))
-
     # Print guitars from the list (oldest to newest based on year)
     if guitars:  # Handle the ValueError when no guitars are given.
         print("These are my guitars:")
