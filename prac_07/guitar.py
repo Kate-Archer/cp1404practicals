@@ -16,7 +16,7 @@ class Guitar:
 
     def __str__(self):
         """Return string representation of Guitar."""
-        return f"{self.name} ({self.year}) : ${self.cost: .2f}"
+        return f"{self.name} ({self.year}) : ${self.cost}"
 
     def __repr__(self):
         """Reprint the data in the proper string format."""

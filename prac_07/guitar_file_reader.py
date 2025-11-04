@@ -17,7 +17,7 @@ def main():
     while name != "":
         year = get_valid_year()
         cost = get_valid_cost()
-        guitar = Guitar(name, year, cost)
+        guitar = Guitar(name, int(year), cost)
         guitars.append(guitar)
         print(f"{name} ({year}) : ${cost: .2f} added.")
         name = str(input("Name:"))
@@ -46,7 +46,7 @@ def load_guitars():
             name = parts[0]
             year = parts[1]
             cost = parts[2]
-            guitar = Guitar(name, year, cost)
+            guitar = Guitar(name, int(year), cost)
             # Add the new guitar to the list
             guitars.append(guitar)
         # Close the file after reading it
