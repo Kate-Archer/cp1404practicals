@@ -1,6 +1,7 @@
 """
 Prac 07
 Read guitar csv file
+Print a list of the give guitars sorted by year
 """
 from prac_07.guitar import Guitar
 
@@ -23,7 +24,8 @@ def main():
     # Close the file after reading it
     in_file.close()
 
-    for guitar in guitars:
+    # Print guitars from the list (oldest to newest based on year)
+    for guitar in sorted(guitars):
         print(guitar)
 
 

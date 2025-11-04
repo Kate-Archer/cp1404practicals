@@ -1,7 +1,6 @@
 """
-Prac 06
+Prac 07 (modified)
 Guitar Class
-start 1:10 -1:45
 """
 
 class Guitar:
@@ -10,6 +9,10 @@ class Guitar:
         self.name = str(name)
         self.year = int(year)
         self.cost = float(cost)
+
+    def __lt__(self, other):
+        """Sort guitars by year by defining which is less than the other (oldest to newest)."""
+        return self.year < other.year
 
     def __str__(self):
         """Return string representation of Guitar."""
@@ -27,8 +30,3 @@ class Guitar:
     def is_vintage(self):
         """Check if the guitar is vintage (50 years old or more) and return."""
         return self.get_age() >= 50
-
-
-    def read_guitar(self):
-        pass
-
