@@ -6,9 +6,9 @@ Guitar Class
 class Guitar:
     def __init__(self, name = "", year = 0, cost = 0.0):
         """Create Guitar class with instances."""
-        self.name = str(name)
-        self.year = int(year)
-        self.cost = float(cost)
+        self.name = name
+        self.year = year
+        self.cost = cost
 
     def __lt__(self, other):
         """Sort guitars by year by defining which is less than the other (oldest to newest)."""
