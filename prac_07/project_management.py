@@ -4,10 +4,25 @@ Prac 07
 time estimate: 1 hour
 start 8:33
 """
+from prac_07.project import Project
+
 
 def load_projects():
+    """--"""
     with open("projects.txt", "r") as in_file:
-        pass
+        in_file.readline()
+        for line in in_file:
+            parts = line.rstrip("\n").split("\t")
+            # Construct project object using the elements
+            name = parts[0]
+            start_date = parts[1]
+            priority = int(parts[2])
+            cost_estimate = float(parts[3])
+            completion_percent = int(parts[4])
+            project = Project(name, start_date, priority, cost_estimate, completion_percent)
+    return project
+
+
 
 
 def main():
