@@ -5,13 +5,14 @@ time estimate: 2 hour
 5+ hours
 """
 from prac_07.project import Project
+from datetime import datetime
+
 DEFAULT_FILENAME = "projects.txt"
-import csv
+
 
 
 def load_projects():
     """Load projects from a valid filename entered by the user (or use default)."""
-    from datetime import datetime
     projects = []
     while True:
         filename = input(f"Provide a filename to load projects from (enter for default: {DEFAULT_FILENAME}): ").strip()
@@ -42,7 +43,6 @@ def load_projects():
             print(f"The file '{filename}' was not found. Try again or press space to cancel.")
 
 
-
 def main():
     """Main"""
     project, projects = load_projects()
@@ -58,7 +58,8 @@ def main():
             filename = save_project(projects)
 
         elif choice == "D":
-            max_length_name, max_length_date, max_length_priority, max_length_cost, max_length_completion = compute_max_lengths(projects)
+            max_length_name, max_length_date, max_length_priority, max_length_cost, max_length_completion = compute_max_lengths(
+                projects)
             # Separate projects by completion status
             display_projects(max_length_completion, max_length_cost, max_length_date, max_length_name,
                              max_length_priority, projects)
@@ -67,11 +68,20 @@ def main():
             max_length_name, max_length_date, max_length_priority, max_length_cost, max_length_completion = compute_max_lengths(
                 projects)
             filter_project_dates(max_length_completion, max_length_cost, max_length_date, max_length_name,
-                             max_length_priority, projects)
-
+                                 max_length_priority, projects)
 
         elif choice == "A":
-            pass
+            while name != "":
+                #TODO: ADD ERROR CHECKS, e.g. invalid int,
+                start_date = get_valid_date
+                priority = get_valid_priority
+                cost_estimate = get_valid_cost
+                complete_percent = get_valid_percent
+                project = Project(name, start_date, int(priority), float(cost_estimate), int(cost_estimate), int(complete_percent))
+                projects.append(project)
+                print(f"Name:{name}, Started:{start_date}, Priority:{priority}, Cost estimate:{cost_estimate}, Completion (%):{completion_percent} added.")
+                name = str(input("Name:"))
+
         elif choice == "U":
             pass
         else:
@@ -86,7 +96,8 @@ def main():
         pass
 
 
-def display_projects(max_length_completion: int, max_length_cost: int, max_length_date: int, max_length_name: int, max_length_priority: int, projects):
+def display_projects(max_length_completion: int, max_length_cost: int, max_length_date: int, max_length_name: int,
+                     max_length_priority: int, projects):
     """Display projects grouped by completion status and sorted by highest priority."""
     incomplete_projects = [project for project in projects if not project.is_complete()]
     complete_projects = [project for project in projects if project.is_complete()]
@@ -98,11 +109,13 @@ def display_projects(max_length_completion: int, max_length_cost: int, max_lengt
     # Display both groups
     print("\nIncomplete projects:")
     for project in incomplete_projects:
-        print(f"{project.name:<{max_length_name}}  {project.start_date:<{max_length_date}}  {project.priority:<{max_length_priority}}  {project.cost_estimate:<{max_length_cost}.2f}  {project.completion_percent:<{max_length_completion}}%")
+        print(
+            f"{project.name:<{max_length_name}}  {project.start_date:<{max_length_date}}  {project.priority:<{max_length_priority}}  {project.cost_estimate:<{max_length_cost}.2f}  {project.completion_percent:<{max_length_completion}}%")
 
     print("\nComplete projects:")
     for project in complete_projects:
-        print(f"{project.name:<{max_length_name}}  {project.start_date:<{max_length_date}}  {project.priority:<{max_length_priority}}  {project.cost_estimate:<{max_length_cost}.2f}  {project.completion_percent:<{max_length_completion}}%")
+        print(
+            f"{project.name:<{max_length_name}}  {project.start_date:<{max_length_date}}  {project.priority:<{max_length_priority}}  {project.cost_estimate:<{max_length_cost}.2f}  {project.completion_percent:<{max_length_completion}}%")
 
 
 def save_project(projects):
@@ -120,13 +133,15 @@ def save_project(projects):
             with open(filename, "w", encoding="utf-8", newline="") as out_file:
                 out_file.write("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage\n")
                 for project in projects:
-                    out_file.write(f"{project.name}\t{project.start_date}\t{project.priority}\t{project.cost_estimate}\t{project.completion_percent}\n")
+                    out_file.write(
+                        f"{project.name}\t{project.start_date}\t{project.priority}\t{project.cost_estimate}\t{project.completion_percent}\n")
 
             print(f"Projects successfully saved to '{filename}'.")
             return filename
 
         except FileNotFoundError:
             print(f"The file '{filename}' was not found. Try again or press Space to cancel.")
+
 
 def compute_max_lengths(projects):
     """Compute the maximum length for project name, start date, priority, cost estimate and completion percentage."""
@@ -139,9 +154,9 @@ def compute_max_lengths(projects):
     return max_length_name, max_length_date, max_length_priority, max_length_cost, max_length_completion
 
 
-def filter_project_dates(max_length_completion: int, max_length_cost: int, max_length_date: int, max_length_name: int, max_length_priority: int, projects):
+def filter_project_dates(max_length_completion: int, max_length_cost: int, max_length_date: int, max_length_name: int,
+                         max_length_priority: int, projects):
     """Ask for a valid date (dd/mm/yyyy) and filter projects starting after it (sorted by date)."""
-    from datetime import datetime
     # Keep asking until a valid date is given or the user cancels
     while True:
         given_date = input("Show projects that start after date (dd/mm/yyyy)(enter to cancel): ").strip()
@@ -162,11 +177,10 @@ def filter_project_dates(max_length_completion: int, max_length_cost: int, max_l
         print(f"\nProjects starting after {filter_date:%d/%m/%Y}:")
         for project in filtered:
             date_str = project.start_date.strftime("%d/%m/%Y")
-            print(f"{project.name:<{max_length_name}}  {date_str:<{max_length_date}}  {project.priority:<{max_length_priority}}  {project.cost_estimate:<{max_length_cost}.2f}  {project.completion_percent:<{max_length_completion}}%")
+            print(
+                f"{project.name:<{max_length_name}}  {date_str:<{max_length_date}}  {project.priority:<{max_length_priority}}  {project.cost_estimate:<{max_length_cost}.2f}  {project.completion_percent:<{max_length_completion}}%")
     else:
         print(f"No projects start after {filter_date:%d/%m/%Y}.")
 
+
 main()
-
-
-
