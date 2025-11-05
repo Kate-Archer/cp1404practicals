@@ -12,19 +12,15 @@ import csv
 def load_projects():
     """Load projects from a valid filename entered by the user (or use default)."""
     projects = []
-
     while True:
         filename = input(f"Provide a filename to load projects from (enter for default: {DEFAULT_FILENAME}): ").strip()
-
         # Use default file if enter is pressed
         if filename == "":
             filename = DEFAULT_FILENAME
-
         # Allow user to cancel with a space
         if filename.isspace():
             print("Cancelled loading projects.")
             return None, []
-
         try:
             with open(filename, "r", encoding="utf-8") as in_file:
                 in_file.readline()  # Skip header
@@ -39,7 +35,6 @@ def load_projects():
                     completion_percent = int(parts[4])
                     project = Project(name, start_date, priority, cost_estimate, completion_percent)
                     projects.append(project)
-
             print(f"Loaded {len(projects)} project(s) from '{filename}'.")
             return filename, projects
         except FileNotFoundError:
@@ -61,16 +56,25 @@ def main():
         elif choice == "S":
             filename = save_project(projects)
 
-
         elif choice == "D":
-            #TODO: continue
-            for line in project:
-                complete_status = "Incomplete projects:"
-                if project.is_complete():
-                    complete_status= "Complete projects:"
-                print(projects)
+            max_length_name, max_length_date, max_length_priority, max_length_cost, max_length_completion = compute_max_lengths(projects)
+            # Separate projects by completion status
+            incomplete_projects = [project for project in projects if not project.is_complete()]
+            complete_projects = [project for project in projects if project.is_complete()]
 
-            print("")
+            # Sort each list by highest priority (__lt__)
+            incomplete_projects.sort()
+            complete_projects.sort()
+
+            # Display both groups
+            print("\nIncomplete projects:")
+            for project in incomplete_projects:
+                print(f"{project.name:<{max_length_name}}  {project.start_date:<{max_length_date}}  {project.priority:<{max_length_priority}}  {project.cost_estimate:<{max_length_cost}.2f}  {project.completion_percent:<{max_length_completion}}%")
+
+            print("\nComplete projects:")
+            for project in complete_projects:
+                print(f"{project.name:<{max_length_name}}  {project.start_date:<{max_length_date}}  {project.priority:<{max_length_priority}}  {project.cost_estimate:<{max_length_cost}.2f}  {project.completion_percent:<{max_length_completion}}%")
+
         elif choice == "F":
             pass
         elif choice == "A":
@@ -115,6 +119,16 @@ def save_project(projects):
 
         except FileNotFoundError:
             print(f"The file '{filename}' was not found. Try again or press Space to cancel.")
+
+def compute_max_lengths(projects):
+    """Compute the maximum column lengths for project name, start date, and other attributes."""
+    max_length_name = max(len(project.name) for project in projects)
+    max_length_date = max(len(str(project.start_date)) for project in projects)
+    max_length_priority = max(len(str(project.priority)) for project in projects)
+    max_length_cost = max(len(f"{project.cost_estimate:.2f}") for project in projects)
+    max_length_completion = max(len(f"{project.completion_percent}%") for project in projects)
+
+    return max_length_name, max_length_date, max_length_priority, max_length_cost, max_length_completion
 
 
 main()
