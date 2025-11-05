@@ -13,10 +13,18 @@ class Project:
 
     def __str__(self):
         """Return string representation of Project variables."""
-        #todo:
-        return f"{self.name}, {self.start_date}, {self.priority}"
+        return f"{self.name}, start: {self.start_date}, priority {self.priority}, estimate: ${self.cost_estimate}, completion: {self.completion_percent}% "
+
 
     def __repr__(self):
         """Reprint the data in the proper string format."""
         return str(self)
+
+    def is_complete(self):
+        """Check if the project is complete (100%) and return."""
+        return self.completion_percent == 100
+
+    def __lt__(self, other):
+        """Sort project by highest priority."""
+        return self.priority > other.priority
 
