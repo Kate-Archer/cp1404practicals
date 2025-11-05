@@ -28,3 +28,7 @@ class Project:
         """Sort project by highest priority."""
         return self.priority > other.priority
 
+    def __lt__(self, other):
+        """Sort project by date (ascending)."""
+        return self.start_date < other.start_date
+
