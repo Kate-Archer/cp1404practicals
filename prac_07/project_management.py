@@ -64,25 +64,10 @@ def main():
                              max_length_priority, projects)
 
         elif choice == "F":
-            from datetime import datetime
-
-            given_date = input("Show projects that start after date (dd/mm/yyyy): ").strip()
-            try:
-                filter_date = datetime.strptime(given_date, "%d/%m/%Y").date()
-            except ValueError:
-                print("Invalid date format. Please use dd/mm/yyyy.")
-                continue
-
-            # Filter and sort
-            filtered_projects = [project for project in projects if project.start_date > filter_date]
-            filtered_projects.sort() # Sort dates via  __lt__
-
-            if filtered_projects:
-                print(f"\nProjects starting after {filter_date.strftime('%d/%m/%Y')}:")
-                for p in filtered_projects:
-                    print(f"  {p}")
-            else:
-                print(f"No projects start after {filter_date.strftime('%d/%m/%Y')}.")
+            max_length_name, max_length_date, max_length_priority, max_length_cost, max_length_completion = compute_max_lengths(
+                projects)
+            filter_project_dates(max_length_completion, max_length_cost, max_length_date, max_length_name,
+                             max_length_priority, projects)
 
 
         elif choice == "A":
@@ -113,13 +98,11 @@ def display_projects(max_length_completion: int, max_length_cost: int, max_lengt
     # Display both groups
     print("\nIncomplete projects:")
     for project in incomplete_projects:
-        print(
-            f"{project.name:<{max_length_name}}  {project.start_date:<{max_length_date}}  {project.priority:<{max_length_priority}}  {project.cost_estimate:<{max_length_cost}.2f}  {project.completion_percent:<{max_length_completion}}%")
+        print(f"{project.name:<{max_length_name}}  {project.start_date:<{max_length_date}}  {project.priority:<{max_length_priority}}  {project.cost_estimate:<{max_length_cost}.2f}  {project.completion_percent:<{max_length_completion}}%")
 
     print("\nComplete projects:")
     for project in complete_projects:
-        print(
-            f"{project.name:<{max_length_name}}  {project.start_date:<{max_length_date}}  {project.priority:<{max_length_priority}}  {project.cost_estimate:<{max_length_cost}.2f}  {project.completion_percent:<{max_length_completion}}%")
+        print(f"{project.name:<{max_length_name}}  {project.start_date:<{max_length_date}}  {project.priority:<{max_length_priority}}  {project.cost_estimate:<{max_length_cost}.2f}  {project.completion_percent:<{max_length_completion}}%")
 
 
 def save_project(projects):
@@ -155,6 +138,33 @@ def compute_max_lengths(projects):
 
     return max_length_name, max_length_date, max_length_priority, max_length_cost, max_length_completion
 
+
+def filter_project_dates(max_length_completion: int, max_length_cost: int, max_length_date: int, max_length_name: int, max_length_priority: int, projects):
+    """Ask for a valid date (dd/mm/yyyy) and filter projects starting after it (sorted by date)."""
+    from datetime import datetime
+    # Keep asking until a valid date is given or the user cancels
+    while True:
+        given_date = input("Show projects that start after date (dd/mm/yyyy)(enter to cancel): ").strip()
+        if given_date == "":  # Allow user to cancel with enter.
+            print("Cancelled.")
+            return
+        try:
+            filter_date = datetime.strptime(given_date, "%d/%m/%Y").date()
+            break  # Break if a valid date is given
+        except ValueError:
+            print("Invalid date format. Please use dd/mm/yyyy.")
+
+    # Filter and sort
+    filtered = [project for project in projects if project.start_date > filter_date]
+    filtered.sort()
+
+    if filtered:
+        print(f"\nProjects starting after {filter_date:%d/%m/%Y}:")
+        for project in filtered:
+            date_str = project.start_date.strftime("%d/%m/%Y")
+            print(f"{project.name:<{max_length_name}}  {date_str:<{max_length_date}}  {project.priority:<{max_length_priority}}  {project.cost_estimate:<{max_length_cost}.2f}  {project.completion_percent:<{max_length_completion}}%")
+    else:
+        print(f"No projects start after {filter_date:%d/%m/%Y}.")
 
 main()
 
