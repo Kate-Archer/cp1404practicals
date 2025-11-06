@@ -6,6 +6,7 @@ time estimate: 2 hour
 """
 from prac_07.project import Project
 from datetime import datetime
+import datetime as dt
 
 DEFAULT_FILENAME = "projects.txt"
 
@@ -71,15 +72,16 @@ def main():
                                  max_length_priority, projects)
 
         elif choice == "A":
+            name = str(input("Project name (enter to cancel):")).title()
             while name != "":
-                #TODO: ADD ERROR CHECKS, e.g. invalid int,
-                start_date = get_valid_date
-                priority = get_valid_priority
-                cost_estimate = get_valid_cost
-                complete_percent = get_valid_percent
-                project = Project(name, start_date, int(priority), float(cost_estimate), int(cost_estimate), int(complete_percent))
+                start_date = get_valid_date()
+                priority = get_valid_priority()
+                cost_estimate = get_valid_cost()
+                completion_percent = get_valid_percent()
+                project = Project(name, start_date, priority, cost_estimate, completion_percent)
                 projects.append(project)
-                print(f"Name:{name}, Started:{start_date}, Priority:{priority}, Cost estimate:{cost_estimate}, Completion (%):{completion_percent} added.")
+                filename = save_project(projects)
+                print(f"Project name:{name}, Started:{start_date}, Priority:{priority}, Cost estimate:{cost_estimate}, Completion (%):{completion_percent} added.")
                 name = str(input("Name:"))
 
         elif choice == "U":
@@ -92,8 +94,8 @@ def main():
 
     final_choice = input(">>> Do you want to save projects.txt (default file)? (Y/N):").upper()
     if final_choice == "Y":
-        # save file
-        pass
+        # Save project if prompted
+        filename = save_project(projects)
 
 
 def display_projects(max_length_completion: int, max_length_cost: int, max_length_date: int, max_length_name: int,
@@ -182,5 +184,50 @@ def filter_project_dates(max_length_completion: int, max_length_cost: int, max_l
     else:
         print(f"No projects start after {filter_date:%d/%m/%Y}.")
 
+def get_valid_date():
+    """Prompt for a date as dd/mm/yyyy and return a valid date format."""
+    while True:
+        try:
+            start_date = input("Enter start date (dd/mm/yyyy): ").strip()
+            start_date = dt.datetime.strptime(start_date, "%d/%m/%Y").date()
+            return start_date
+        except ValueError:
+            print("Date format must be dd/mm/yyyy")
+
+def get_valid_priority():
+    """Handle priority exceptions (non integer input)."""
+    while True:
+        try:
+            priority = int(input("Priority: "))
+            if priority < 1:
+                print("Priority must be 1 or above.")
+                priority = int(input("Priority: "))
+            return priority
+        except ValueError:
+            print("Priority must be an integer (e.g. 1).")
+
+def get_valid_cost():
+    """Handle cost exceptions (non float or non integer input)."""
+    while True:
+        try:
+            cost_estimate = float(input("Cost: $"))
+            if cost_estimate < 0:
+                print("Cost must be >=0")
+                cost_estimate = float(input("Cost: $"))
+            return cost_estimate
+        except ValueError:
+            print("Cost must be a number.")
+
+def get_valid_percent():
+    """Handle percent exceptions (non integer input)."""
+    while True:
+        try:
+            completion_percent = int(input("Percent completed (%): "))
+            if completion_percent < 0 or completion_percent > 100:
+                print("Completion percentage is 0-100% only (whole numbers).")
+                completion_percent = int(input("Percent completed (%): "))
+            return completion_percent
+        except ValueError:
+            print("Completion percentage must be a valid number.")
 
 main()
