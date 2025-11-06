@@ -54,6 +54,7 @@ def main():
     U - Update project (Choose a project, then optionally change priority and/or completion % (press Enter to keep current)).
     Q - Quit (Exit the program, optionally save project if prompted with "Y").
     """
+    # Load the projects from the selected file
     project, projects = load_projects()
 
     menu = "Menu:\nL - Load projects\nS - Save projects\nD - Display projects\nF - Filter projects by date\nA - Add new project\nU - Update  project\nQ - Quit"
