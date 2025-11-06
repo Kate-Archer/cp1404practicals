@@ -56,9 +56,11 @@ def main():
             filename, projects = load_projects()
 
         elif choice == "S":
+            # Save project
             filename = save_project(projects)
 
         elif choice == "D":
+            # Compute max lengths of values
             max_length_name, max_length_date, max_length_priority, max_length_cost, max_length_completion = compute_max_lengths(
                 projects)
             # Separate projects by completion status
@@ -68,10 +70,12 @@ def main():
         elif choice == "F":
             max_length_name, max_length_date, max_length_priority, max_length_cost, max_length_completion = compute_max_lengths(
                 projects)
+            # Filter projects based on date
             filter_project_dates(max_length_completion, max_length_cost, max_length_date, max_length_name,
                                  max_length_priority, projects)
 
         elif choice == "A":
+            # Add a valid project to the chosen file and Project class (name, start date, priority, cost estimate, completion percentage)
             name = str(input("Project name (enter to cancel):")).title()
             while name != "":
                 start_date = get_valid_date()
@@ -81,11 +85,16 @@ def main():
                 project = Project(name, start_date, priority, cost_estimate, completion_percent)
                 projects.append(project)
                 filename = save_project(projects)
+                # Display added project
                 print(f"Project name:{name}, Started:{start_date}, Priority:{priority}, Cost estimate:{cost_estimate}, Completion (%):{completion_percent} added.")
                 name = str(input("Name:"))
 
         elif choice == "U":
-            pass
+            max_length_name, max_length_date, max_length_priority, max_length_cost, max_length_completion = compute_max_lengths(projects)
+            # Select a valid project to modify
+            select_project(max_length_completion, max_length_cost, max_length_date, max_length_name,
+                                 max_length_priority, projects)
+
         else:
             print("Invalid menu choice")
         print(menu)
@@ -111,13 +120,11 @@ def display_projects(max_length_completion: int, max_length_cost: int, max_lengt
     # Display both groups
     print("\nIncomplete projects:")
     for project in incomplete_projects:
-        print(
-            f"{project.name:<{max_length_name}}  {project.start_date:<{max_length_date}}  {project.priority:<{max_length_priority}}  {project.cost_estimate:<{max_length_cost}.2f}  {project.completion_percent:<{max_length_completion}}%")
+        print(f"{project.name:<{max_length_name}}  {project.start_date:<{max_length_date}}  {project.priority:<{max_length_priority}}  {project.cost_estimate:<{max_length_cost}.2f}  {project.completion_percent:<{max_length_completion}}%")
 
     print("\nComplete projects:")
     for project in complete_projects:
-        print(
-            f"{project.name:<{max_length_name}}  {project.start_date:<{max_length_date}}  {project.priority:<{max_length_priority}}  {project.cost_estimate:<{max_length_cost}.2f}  {project.completion_percent:<{max_length_completion}}%")
+        print(f"{project.name:<{max_length_name}}  {project.start_date:<{max_length_date}}  {project.priority:<{max_length_priority}}  {project.cost_estimate:<{max_length_cost}.2f}  {project.completion_percent:<{max_length_completion}}%")
 
 
 def save_project(projects):
@@ -135,8 +142,9 @@ def save_project(projects):
             with open(filename, "w", encoding="utf-8", newline="") as out_file:
                 out_file.write("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage\n")
                 for project in projects:
+                    date_str = project.start_date.strftime("%d/%m/%Y")  # Format to dd/mm/yyyy
                     out_file.write(
-                        f"{project.name}\t{project.start_date}\t{project.priority}\t{project.cost_estimate}\t{project.completion_percent}\n")
+                        f"{project.name}\t{date_str}\t{project.priority}\t{project.cost_estimate}\t{project.completion_percent}\n")
 
             print(f"Projects successfully saved to '{filename}'.")
             return filename
@@ -179,8 +187,7 @@ def filter_project_dates(max_length_completion: int, max_length_cost: int, max_l
         print(f"\nProjects starting after {filter_date:%d/%m/%Y}:")
         for project in filtered:
             date_str = project.start_date.strftime("%d/%m/%Y")
-            print(
-                f"{project.name:<{max_length_name}}  {date_str:<{max_length_date}}  {project.priority:<{max_length_priority}}  {project.cost_estimate:<{max_length_cost}.2f}  {project.completion_percent:<{max_length_completion}}%")
+            print(f"{project.name:<{max_length_name}}  {date_str:<{max_length_date}}  {project.priority:<{max_length_priority}}  {project.cost_estimate:<{max_length_cost}.2f}  {project.completion_percent:<{max_length_completion}}%")
     else:
         print(f"No projects start after {filter_date:%d/%m/%Y}.")
 
@@ -189,6 +196,7 @@ def get_valid_date():
     while True:
         try:
             start_date = input("Enter start date (dd/mm/yyyy): ").strip()
+            # Convert start date to the proper date format
             start_date = dt.datetime.strptime(start_date, "%d/%m/%Y").date()
             return start_date
         except ValueError:
@@ -200,6 +208,7 @@ def get_valid_priority():
         try:
             priority = int(input("Priority: "))
             if priority < 1:
+                # Ensure priority is 1 or more.
                 print("Priority must be 1 or above.")
                 priority = int(input("Priority: "))
             return priority
@@ -223,6 +232,7 @@ def get_valid_percent():
     while True:
         try:
             completion_percent = int(input("Percent completed (%): "))
+            # Handle percentages outside valid range
             if completion_percent < 0 or completion_percent > 100:
                 print("Completion percentage is 0-100% only (whole numbers).")
                 completion_percent = int(input("Percent completed (%): "))
@@ -230,4 +240,28 @@ def get_valid_percent():
         except ValueError:
             print("Completion percentage must be a valid number.")
 
+
+def select_project(max_length_completion: int, max_length_cost: int, max_length_date: int, max_length_name: int, max_length_priority: int, projects):
+    """Prompt the user to select a valid project number and return the chosen project index, or None if cancelled."""
+    if not projects:
+        print("No projects to update.")
+        return None # Return None if project list is empty
+    print("Projects:")
+    for index, project in enumerate(projects, start=1):
+        date_str = project.start_date.strftime("%d/%m/%Y")
+        # Display the projects
+        print(f"{index}. Name: {project.name:<{max_length_name}} | Start: {date_str} | Priority {project.priority:<{max_length_priority}} | {project.cost_estimate:<{max_length_cost}} | Completion percentage: {project.completion_percent:<{max_length_completion}}%")
+    while True:
+        chosen_project = input("\nEnter project number to update (Enter to cancel): ").strip()
+        if chosen_project == "":
+            print("Cancelled input.")
+            return None
+        if not chosen_project.isdigit():
+            print(f"Please enter a number between 1 and {len(projects)}.")
+            continue
+
+        if int(chosen_project) in range(1, len(projects) + 1):
+            return int(chosen_project) - 1 # Return valid project
+        else:
+            print(f"Please enter a number between 1 and {len(projects)}.")
 main()
