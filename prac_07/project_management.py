@@ -44,7 +44,16 @@ def load_projects():
 
 
 def main():
-    """Main"""
+    """
+    Program menu
+    L - Load projects (Prompt for a filename and load projects (dates as dd/mm/yyyy)).
+    S - Save projects (Prompt for a filename and save the current projects.
+    D - Display projects (Incomplete and Complete (sorted by priority, 1 = highest)).
+    F - Filter projects by date (Ask for a date (dd/mm/yyyy) and list projects (sorted) starting after that date.
+    A - Add new project and save (Inputs: name, start date (dd/mm/yyyy), priority (>=1), cost (>0), completion % (0–100)).
+    U - Update project (Choose a project, then optionally change priority and/or completion % (press Enter to keep current)).
+    Q - Quit (Exit the program, optionally save project if prompted with "Y").
+    """
     project, projects = load_projects()
 
     menu = "Menu:\nL - Load projects\nS - Save projects\nD - Display projects\nF - Filter projects by date\nA - Add new project\nU - Update  project\nQ - Quit"
