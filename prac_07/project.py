@@ -3,7 +3,7 @@ Project class
 """
 
 class Project:
-    """Construct Project class"""
+    """Construct Project class."""
     def __init__(self, name = "", start_date = "", priority = 0, cost_estimate = 0.0, completion_percent = 0):
         """Create Project class with given instances."""
        self.name = name
