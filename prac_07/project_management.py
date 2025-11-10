@@ -95,9 +95,11 @@ def main():
                 projects.append(project)
                 save_project(projects)
                 # Display added project
-                print(
-                    f"Project name:{name}, Started:{start_date}, Priority:{priority}, Cost estimate:{cost_estimate}, Completion (%):{completion_percent} added.")
-                name = str(input("Name:"))
+                # Shortcut: do this instead
+                print(f"{project} add.")
+               # print(
+               #     f"Project name:{name}, Started:{start_date}, Priority:{priority}, Cost estimate:{cost_estimate}, Completion (%):{completion_percent} added.")
+               # name = str(input("Name:"))
 
         elif choice == "U":
             max_length_name, max_length_date, max_length_priority, max_length_cost, max_length_completion = compute_max_lengths(
