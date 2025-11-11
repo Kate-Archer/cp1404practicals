@@ -7,7 +7,6 @@ from kivy.lang import Builder
 from kivy.uix.button import Button
 from kivy.properties import StringProperty
 
-from prac_05.kivy_layout import Label
 
 NEW_COLOUR = (1, 0, 0, 1)  # RGBA for red
 ALTERNATIVE_COLOUR = (1, 0, 1, 1)  # RGBA for magenta
@@ -17,9 +16,10 @@ class DynamicLabelsApp(App):
     """Main program - Kivy app to create dynamic labels based on a list of names."""
     status_text = StringProperty()
 
-    def __init__(self, name):
-        """Construct main app using name."""
-        self.name = name
+    def __init__(self, **kwargs):
+        """Construct main app using a list of names."""
+        super().__init__(**kwargs)
+        self.names = {"John", "Steve", "Mary", "Abi", "Luna", "Tom"}
 
     def build(self):
         """Build the Kivy GUI."""
@@ -30,7 +30,7 @@ class DynamicLabelsApp(App):
 
     def create_labels(self):
         """Create labels from the given names and add them to the GUI."""
-        for name in self.name:
+        for name in self.names:
             # create a name for each name entry, specifying the text
             temp_label = Label(text=name)
             temp_label.bind(on_press=self.press_entry)
