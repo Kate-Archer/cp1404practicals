@@ -4,16 +4,12 @@ Dynamically create labels based on a list of names
 
 from kivy.app import App
 from kivy.lang import Builder
-from kivy.uix.button import Button
+from kivy.uix.label import Label
 from kivy.properties import StringProperty
 
 
-NEW_COLOUR = (1, 0, 0, 1)  # RGBA for red
-ALTERNATIVE_COLOUR = (1, 0, 1, 1)  # RGBA for magenta
-
-
 class DynamicLabelsApp(App):
-    """Main program - Kivy app to create dynamic labels based on a list of names."""
+    """Main program - Kivy app to create dynamic labels (with a widget) based on a list of names."""
     status_text = StringProperty()
 
     def __init__(self, **kwargs):
@@ -30,18 +26,18 @@ class DynamicLabelsApp(App):
 
     def create_labels(self):
         """Create labels from the given names and add them to the GUI."""
+        print("Labels added")
         for name in self.names:
-            # create a name for each name entry, specifying the text
+            # Create a label for each name in the list
             temp_label = Label(text=name)
-            temp_label.bind(on_press=self.press_entry)
-            # set the button's background colour
-            temp_label.background_color = NEW_COLOUR
-            # add the button to the "entries_box" layout widget
-            self.root.ids.entries_box.add_label(temp_label)
+
+            # Add the label to the "entries_box" layout widget
+            self.root.ids.entries_box.add_widget(temp_label)
 
     def clear_all(self):
         """Clear all widgets that are children of the "entries_box" layout widget."""
-        self.root.ids.entries_box.clear_labels()
+        print("Clear all labels")
+        self.root.ids.entries_box.clear_widgets()
 
 
 DynamicLabelsApp().run()

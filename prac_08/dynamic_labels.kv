@@ -1,4 +1,17 @@
 BoxLayout:
     BoxLayout:
         orientation: 'vertical'
-        id: main
+        id: entries_box
+    Label:
+        size_hint_y: 0.4
+        text: app.status_text
+        font_size: 48
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: 0.2
+        Button:
+            text: "Create Labels"
+            on_press: app.create_labels()
+        Button:
+            text: "Clear Labels"
+            on_press: app.clear_all()
