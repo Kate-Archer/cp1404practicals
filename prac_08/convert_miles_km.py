@@ -3,6 +3,9 @@ from kivy.lang import Builder
 from kivy.core.window import Window
 from kivy.properties import StringProperty
 
+# CONSTANT: miles to kilometres factor conversion
+MILES_TO_KM_CONVERSION = 1.60934
+
 
 class ConvertMilesToKmApp(App):
     """
@@ -31,11 +34,12 @@ class ConvertMilesToKmApp(App):
             print("convert to number")
             return float(text)
         except ValueError:
+            # Set the output result to 0.0 to prevent an error
             return 0.0
 
     def update_to_km(self, miles):
         """Update miles input to kilometres as a string."""
-        self.output_km = str(miles * 1.60934)
+        self.output_km = str(miles * MILES_TO_KM_CONVERSION)
 
     def handle_increment(self, text, change):
         """Handle up or down button press by updating the text float value based on the incremental change. Call calculation function."""
