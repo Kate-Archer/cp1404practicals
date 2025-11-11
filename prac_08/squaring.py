@@ -29,5 +29,4 @@ class SquareNumberApp(App):
         except ValueError:
             pass
 
-
 SquareNumberApp().run()

@@ -2,23 +2,28 @@ BoxLayout:
     orientation: 'vertical'
     BoxLayout:
         TextInput:
-            id: input_number
+            id: input_miles
             text: '34'
             font_size: 48
             multiline: False
+            on_text_validate: app.handle_calculate(self.text)
         BoxLayout:
             orientation: 'vertical'
             Button:
                 text: 'Up'
-                # The following line specifies the function in the app class to call when the button is pressed.
-                #on_press: app.handle_calculate(input_number.text)
+                # Increase the input value (miles) by 1
+                on_press: app.handle_increment(input_miles.text, 1)
+
             Button:
                 text: 'Down'
-                # The following line specifies the function in the app class to call when the button is pressed.
-                #on_press: app.handle_calculate(input_number.text)
+                # Decrease the input value (miles) by 1
+                on_press: app.handle_increment(input_miles.text, -1)
 
     BoxLayout:
-        # Orientation is horizontal by default.
+        orientation: 'vertical'
         Button:
             text: 'Convert miles to km'
-            #on_press: app.handle_calculate(input_number.text)
+            on_press: app.handle_calculate(input_miles.text)
+        Label:
+            text: app.output_km
+            color: "yellow"
