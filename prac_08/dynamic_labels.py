@@ -8,6 +8,7 @@ from kivy.uix.label import Label
 from kivy.properties import StringProperty
 
 
+
 class DynamicLabelsApp(App):
     """Main program - Kivy app to create dynamic labels (with a widget) based on a list of names."""
     status_text = StringProperty()
@@ -15,7 +16,7 @@ class DynamicLabelsApp(App):
     def __init__(self, **kwargs):
         """Construct main app using a list of names."""
         super().__init__(**kwargs)
-        self.names = {"John", "Steve", "Mary", "Abi", "Luna", "Tom"}
+        self.names = ["John", "Steve", "Mary", "Abi", "Luna", "Tom"]
 
     def build(self):
         """Build the Kivy GUI."""
