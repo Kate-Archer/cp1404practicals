@@ -1,0 +1,18 @@
+#We set an id for the BoxLayout widget that we will add items to in the kv file.
+#[!WARNING] You cannot use the root as your widget to add items to
+
+#temp_button = Button(text=name)
+#We add these new widgets using the add_widget method, e.g.,
+#
+#self.root.ids.entries_box.add_widget(temp_button)
+#We bind a callback function when you make the widget object to add event handler code, e.g.,
+#
+#temp_button.bind(on_release=self.press_entry)
+#Create a very simple app that has a list of names (strings) and dynamically creates a separate Label for each on
+list_of_names = []
+Labels not buttons
+
+BoxLayout:
+    BoxLayout:
+        orientation: 'vertical'
+        id: main
