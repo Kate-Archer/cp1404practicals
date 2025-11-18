@@ -13,11 +13,9 @@ class Band:
         """Return a string representation of a band."""
         return f"{self.name} ({", ".join([musician.__str__() for musician in self.musicians])})"
 
-
     # def __repr__(self):
     #     """Return a string representation of a band, showing the variables."""
     #     return str(self)
-
 
     def add(self, musician):
         """Add a musician to band."""
@@ -28,7 +26,6 @@ class Band:
         if not self.musicians:
             return f"{self.name} has no musicians!"
         return "\n".join(musician.play() for musician in self.musicians)
-
 
 # if __name__ == '__main__':
 #
