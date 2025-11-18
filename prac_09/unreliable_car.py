@@ -12,5 +12,17 @@ class UnreliableCar(Car):
         super().__init__(name, fuel)
         self.reliability = reliability
 
+    def drive(self, distance):
+        """
+        Drive UnreliableCar like parent Car but
+        only if the randomly generated distance (0-100)
+        is less than the car's reliability.
+        """
+        random_number = randint(1, 100)
+        if random_number >= self.reliability:
+            distance = 0 # Distance not driven
+        distance_driven = super().drive(distance)
+        return distance_driven
+
 
 
