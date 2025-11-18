@@ -14,7 +14,7 @@ def main():
         print(f"Try to drive the car {i}km: ")
         print(f"The {old_car.name} can drive {old_car.drive(i)}km")
         print(f"The {new_car.name} can drive {new_car.drive(i)}km")
-        print(f"-------------------------")
+        print(f"-------------------------") # Split the iterations up clearly
 
     # The final state of the cars
     print(old_car)
