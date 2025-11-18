@@ -5,6 +5,7 @@ from prac_09.unreliable_car import UnreliableCar
 
 
 def main():
+    """Test unreliable cars with varying reliabiltiies and distances """
     old_car = UnreliableCar("Old car", 100, 20)
     new_car = UnreliableCar("New car", 130, 95)
 

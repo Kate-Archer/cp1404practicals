@@ -9,6 +9,7 @@ from random import randint
 class UnreliableCar(Car):
     """Unreliable car that inherits from the Car class."""
     def __init__(self, name, fuel, reliability=0):
+        """Create an unreliable car instance (name, fuel, reliability (%))."""
         super().__init__(name, fuel)
         self.reliability = reliability
 
