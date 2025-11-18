@@ -17,7 +17,7 @@ def main():
 
     silver_taxi_2.drive(18)
     print(silver_taxi_2)
-    print(f"fare is: {silver_taxi_2.get_fare()}")
+    print(f"fare is: ${silver_taxi_2.get_fare(): .2f}")
 
 if __name__ == "__main__":
     main()
