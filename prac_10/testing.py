@@ -53,11 +53,7 @@ def run_tests():
 
 
 
-run_tests()
 
-
-#(PyCharm may see your >>> doctest comments and run doctests anyway.)
-doctest.testmod()
 
 
 # TODO: 5. Write and test a function to format a phrase as a sentence,
@@ -76,9 +72,16 @@ def format_phrase_to_sentence(phrase):
     Format a phrase into a sentence
     (starting with a capital and ending with a fullstop).
     >>> format_phrase_to_sentence('hello')
+    'Hello.'
     >>> format_phrase_to_sentence('It is an ex parrot.')
+    'It is an ex parrot.'
     >>> format_phrase_to_sentence('the frog ate the apple.')
-
+    'The frog ate the apple.'
     """
     pass
 
+run_tests()
+
+
+#(PyCharm may see your >>> doctest comments and run doctests anyway.)
+doctest.testmod()
