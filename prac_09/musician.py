@@ -2,7 +2,7 @@
 
 
 class Musician:
-    """Musician class"""
+    """Musician class."""
 
     def __init__(self, name=""):
         """Construct a Musician with a name and empty instrument collection."""
