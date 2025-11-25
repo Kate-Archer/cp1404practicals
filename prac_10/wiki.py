@@ -3,8 +3,7 @@ Wikipedia prac 10
 """
 
 import wikipedia
-from bs4 import BeautifulSoup
-from wikipedia import search, summary, page, DisambiguationError, PageError
+from wikipedia import DisambiguationError, PageError
 
 search_input = input("Enter page title: ")
 while search_input != "":
