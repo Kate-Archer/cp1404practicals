@@ -38,3 +38,7 @@ class Car:
     def __repr__(self):
         """Reprint the data in the proper string format."""
         return str(self)
+
+    @property
+    def odometer(self):
+        return self._odometer
