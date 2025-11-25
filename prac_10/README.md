@@ -61,7 +61,7 @@ For the practical containing the Project Management task was quite long as you a
 I feel its length was unbalanced and slightly unfaired compared to the other practicals and caused some students 
 to skip the task all together due to lack of time available or poor time management.
 This could be improved by making Project Management the only task for that practical and split it up into sub-tasks, or
-shorten it a little.
+shorten it a little. 
 
 ### What did you do really well for practicals in this subject?
 
