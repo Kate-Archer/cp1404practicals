@@ -78,7 +78,10 @@ def format_phrase_to_sentence(phrase):
     >>> format_phrase_to_sentence('the frog ate the apple.')
     'The frog ate the apple.'
     """
-    pass
+    sentence = phrase.capitalize() # Capitalise first letter
+    if sentence[-1] != ".":
+        sentence = f"{sentence}." # Add full stop if necessary
+    return sentence
 
 run_tests()
 
