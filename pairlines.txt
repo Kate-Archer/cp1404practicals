@@ -1,0 +1,8 @@
+Bob
+12
+Jane
+76
+Jimbo
+not a number
+Derek
+21
