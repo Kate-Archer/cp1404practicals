@@ -52,21 +52,6 @@ def run_tests():
     assert car.fuel == 0, "This car does not set fuel correctly (default)"
 
 
-
-
-
-
-# TODO: 5. Write and test a function to format a phrase as a sentence,
-# starting with a capital and ending with a single full stop.
-# Important: start with a function header and just use pass as the body
-# then add doctests for 3 tests:
-#   'hello' -> 'Hello.'
-#   'It is an ex parrot.' -> 'It is an ex parrot.'
-# and one more that you decide is a useful test.
-# Run your doctests and watch the tests fail.
-# Then write the body of the function so that the tests pass.
-
-
 def format_phrase_to_sentence(phrase):
     """
     Format a phrase into a sentence
